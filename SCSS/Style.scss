@@ -114,7 +114,7 @@ body {
 
 //section One
 .section-one {
-  margin-top: -1em;
+  margin: -1em 0 4em;
   & .col {
     text-align: center;
     padding: 3em 0;
@@ -123,31 +123,44 @@ body {
     margin: 0 auto 2em;
     background-color: var(--clr-cardBg);
     &--facebook {
-      border: 3px solid #4267b2;
+      border: 4px solid #4267b2;
       border-radius: 20px;
     }
     &--instagram {
-      border-top: 3px solid transparent;
       background-clip: padding-box;
       border-radius: 20px;
       position: relative;
       &:before {
-        content: '';
+        content: "";
         position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
         z-index: -1;
-        margin: -3px;
+        margin: -4px;
         border-radius: inherit;
-        background: linear-gradient(to bottom right, #405de6, #5851db ,#833ab4, #c13584,#e1306c,#fd1d1d,#f56040,#f77737,#fcaf45,#ffdc80);
+        background: linear-gradient(
+          to bottom right,
+          #405de6,
+          #5851db,
+          #833ab4,
+          #c13584,
+          #e1306c,
+          #fd1d1d,
+          #f56040,
+          #f77737,
+          #fcaf45,
+          #ffdc80
+        );
       }
-      
     }
     &--twitter {
-      border: 3px solid #1da1f2;
+      border: 4px solid #1da1f2;
       border-radius: 20px;
     }
     &--youTube {
-      border: 3px solid #ff0000;
+      border: 4px solid #ff0000;
       border-radius: 20px;
     }
     &__title {
@@ -172,9 +185,22 @@ body {
       font-size: var(--f-size-verySmall);
       color: rgb(42, 172, 42);
       font-weight: 700;
+      & img {
+        height: 0.5em;
+      }
       &--down {
         color: rgb(212, 44, 44);
       }
+    }
+  }
+}
+.section-Two{
+  
+  border: 1px solid violet;
+  &__header{
+    margin-bottom:1em ;
+    & h2{
+      font-size: var(--f-size-small);
     }
   }
 }
