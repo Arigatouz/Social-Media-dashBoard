@@ -4,9 +4,9 @@ const switchLabel = document.getElementById("darkLabel");
 const toggleDarkMode = () => {
   document.body.classList.toggle("darkTheme");
   if (document.body.className === "darkTheme") {
-    switchLabel.textContent = "Light Mode";
-  } else {
     switchLabel.textContent = "Dark Mode";
+  } else {
+    switchLabel.textContent = "Light Mode";
   }
 };
 
