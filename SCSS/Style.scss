@@ -4,6 +4,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  // transition: all 0.4s ease-in-out;
+  user-select: none;
 }
 
 html {
@@ -24,8 +26,10 @@ html {
   );
   --f-size-verySmall: 1.5rem;
   --f-size-small: 2.5rem;
-  --f-size-medium: 4rem;
+  --f-size-medium: 2.7rem;
+  --f-size-x-medium: 3.2rem;
   --f-size-large: 6rem;
+  --f-size-X-large: 6.8rem;
 }
 .darkTheme {
   --clr-BG: hsl(230, 17%, 14%); //main bg
@@ -35,7 +39,19 @@ html {
   --clr-header: hsl(0, 0%, 100%); //header
   --ff-Inter: "Inter", sans-serif;
 }
-
+// Media query declaration
+@mixin respond($breakPoint) {
+  @if $breakPoint == tab {
+    @media screen and (min-width: 900px) {
+      @content;
+    }
+  }
+  @if $breakPoint == desktop {
+    @media screen and (min-width: 1440px) {
+      @content;
+    }
+  }
+}
 //layout
 body {
   background-color: var(--clr-BG);
@@ -44,6 +60,13 @@ body {
 .container {
   width: 95%;
   margin: 0 auto;
+  max-width: 600px;
+  @include respond(tab){
+    max-width: 1000px;
+  }
+  @include respond(desktop){
+    max-width: 1660px;
+  }
 }
 
 // Main header
@@ -56,9 +79,13 @@ body {
     & h1 {
       color: var(--clr-header);
       margin-bottom: 0.5em;
-      font-size: var(--f-size-small);
+      font-size: var(--f-size-medium);
       font-weight: 900;
       font-style: italic;
+      @include respond(tab) {
+        font-size: var(--f-size-X-large);
+        margin-bottom: 0.2em;
+      }
     }
     & p {
       color: var(--clr-text);
@@ -66,17 +93,27 @@ body {
       letter-spacing: 0.2em;
       font-weight: 900;
       margin-bottom: 2em;
+      @include respond(tab) {
+        font-size: 1.5rem;
+        margin-left: 0.7em;
+      }
     }
   }
   &__toggler {
     position: relative;
-    padding-bottom: 2em;
+    padding-bottom: 3.5em;
     margin-top: 3em;
+    @include respond(tab) {
+      margin-top: 4em;
+    }
     & label {
       color: var(--clr-text);
       font-size: 1.5rem;
       font-weight: 700;
       padding-left: 0.5em;
+      @include respond(tab) {
+        font-size: var(--f-size-small);
+      }
     }
     & input {
       position: absolute;
@@ -101,12 +138,14 @@ body {
         left: 0;
         background-color: var(--clr-BG);
         border-radius: 50%;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
         transition: all 0.5s;
       }
       &:checked::before {
         left: 40px;
         background-color: hsl(230, 17%, 14%);
+        box-shadow: 2px 2px 10px hsl(210, 78%, 56%),
+          2px 2px 20px hsl(146, 68%, 55%);
       }
     }
   }
@@ -115,6 +154,14 @@ body {
 //section One
 .section-one {
   margin: -1em 0 4em;
+  @include respond(tab) {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+  }
+  @include respond(desktop) {
+    grid-template-columns: repeat(4, 2fr);
+    margin-top: 2em;
+  }
   & .col {
     text-align: center;
     padding: 3em 0;
@@ -160,25 +207,38 @@ body {
       border-radius: 20px;
     }
     &--youTube {
-      border: 4px solid #ff0000;
+      border: 4px solid #ff000096;
       border-radius: 20px;
     }
     &__title {
-      font-size: 1.5rem;
+      font-size: var(--f-size-verySmall);
       margin: 1.2em 0;
+      color: var(--clr-text);
+      font-weight: 700;
+      @include respond(tab) {
+        font-size: var(--f-size-verySmall);
+      }
       & img {
         vertical-align: middle;
+        @include respond(tab) {
+          width: 4rem;
+          margin-right: 0.4em;
+        }
       }
     }
     &__number {
       font-size: var(--f-size-large);
+      color: var(--clr-header);
       & span {
         display: block;
-        font-size: 1.5rem;
+        font-size: var(--f-size-verySmall);
         font-weight: 400;
         letter-spacing: 0.5em;
         color: var(--clr-text);
-        margin-bottom: 2em;
+        margin: 0.5em 0 2em 0.7em;
+        @include respond(tab) {
+          font-weight: 700;
+        }
       }
     }
     &__follow {
@@ -189,18 +249,88 @@ body {
         height: 0.5em;
       }
       &--down {
-        color: rgb(212, 44, 44);
+        color: #ff000096;
       }
     }
   }
 }
-.section-Two{
-  
-  border: 1px solid violet;
-  &__header{
-    margin-bottom:1em ;
-    & h2{
+.section-Two {
+  &__header {
+    margin-bottom: 3em;
+    padding-left: 1em;
+    & h2 {
       font-size: var(--f-size-small);
+      color: var(--clr-header);
+      @include respond(tab) {
+        font-size: var(--f-size-medium);
+        margin-bottom: 0.8em;
+        padding-bottom: 0.5em;
+        border-bottom: 1px solid var(--clr-text);
+        width: 25rem;
+      }
+      @include respond(desktop) {
+        font-size: var(--f-size-x-medium);
+        width: 30rem;
+      }
+    }
+  }
+  & .statistics {
+    padding-left: 1em;
+    margin: 0 auto;
+    @include respond(tab) {
+      display: grid;
+      grid-template-columns: repeat(2, 2fr);
+      column-gap: 2em;
+    }
+    @include respond(desktop) {
+      grid-template-columns: repeat(4, 2fr);
+    }
+    & .col {
+      background-color: var(--clr-cardBg);
+      margin-bottom: 2em;
+      padding: 1em 3em;
+      border-radius: 0.5rem;
+      box-shadow: 0.2em 0.3em 0.8em rgba(0, 0, 0, 0.8);
+      & .partOne,
+      .partTwo {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      & .partOne {
+        padding: 2em 0;
+        &__title {
+          font-size: var(--f-size-small);
+          font-weight: 700;
+          color: var(--clr-text);
+        }
+        &__icon {
+          align-self: baseline;
+          & img {
+            vertical-align: baseline;
+            width: var(--f-size-medium);
+          }
+        }
+      }
+      & .partTwo {
+        &__statistics {
+          font-size: var(--f-size-large);
+          font-weight: 700;
+          color: var(--clr-header);
+        }
+        &__percentage {
+          font-size: var(--f-size-verySmall);
+          color: rgb(42, 172, 42);
+          font-weight: 700;
+          & img {
+            height: 0.5em;
+          }
+          &--down {
+            color: #ff000096;
+          }
+        }
+      }
     }
   }
 }
