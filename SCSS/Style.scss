@@ -62,10 +62,10 @@ body {
   width: 95%;
   margin: 0 auto;
   max-width: 600px;
-  @include respond(tab){
+  @include respond(tab) {
     max-width: 1000px;
   }
-  @include respond(desktop){
+  @include respond(desktop) {
     max-width: 1660px;
   }
 }
